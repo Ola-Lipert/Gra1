@@ -18,6 +18,19 @@ var button1 = document.getElementById('button_1');
 var button2 = document.getElementById('button_2');
 var button3 = document.getElementById('button_3');
 
+// Pętla i przypisana funkcja dla wszystkich buttons
+var allPlayerMove = document.querySelectorAll('.player-move'); 
+
+for (var i = 0; i < allPlayerMove.length; i++) {
+  var dataMove = allPlayerMove[i].getAttribute('data-move'); 
+
+  allPlayerMove[i].addEventListener('click', function() { 
+    
+    playerMove(dataMove);
+  });
+}
+
+/*
 button1.addEventListener('click', function() {
   playerMove('paper');
 });
@@ -29,7 +42,7 @@ button2.addEventListener('click', function() {
 button3.addEventListener('click', function() {
   playerMove('scissors');
 });
-
+*/
 //Funkcja która losuje 
 function randomNumber() {
   var computerChoices = ['paper', 'stone', 'scissors'];
