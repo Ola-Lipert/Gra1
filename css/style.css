@@ -1,28 +1,7 @@
-body {
-  text-align: center;
-  margin-top: 50px;
-}
+body { text-align: center; margin-top: 50px; }
 
-button {
-  display: inline-block;
-  margin: 4px 2px;
-  padding: 15px 30px;
-  min-width: 160px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.4s;
-  background-position: 100% 0;
-  background-size: 300%;
-  background-color: grey;
-}
-button:hover {
-  color: white;
-  background-position: 0 100%;
-}
+button { display: inline-block; margin: 4px 2px; padding: 15px 30px; min-width: 160px; font-size: 16px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.4s; background-position: 100% 0; background-size: 300%; background-color: grey; }
 
-game {
-  background-color: green;
-  margin-bottom: 50px;
-}
+button:hover { color: white; background-position: 0 100%; }
+
+game { background-color: green; margin-bottom: 50px; }
