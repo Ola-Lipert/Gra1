@@ -1,14 +1,16 @@
 'use strict';
 
-var playersWin = 0;
-var computersWin = 0;
-var rounds;
+var params = {
+  playersWin = 0,
+  computersWin = 0,
+  rounds = 0,
 //zapisanie w zmiennej odwołania do diva
-var output = document.getElementById('output');   
-var result = document.getElementById('result');
-var numberLimit = document.getElementById('numberLimit');
-var gameResult = document.getElementById('gameResult');
-var newGame = document.getElementById('newGame');
+  output = document.getElementById('output'),   
+  result = document.getElementById('result'),
+  numberLimit = document.getElementById('numberLimit'),
+  gameResult = document.getElementById('gameResult'),
+  newGame = document.getElementById('newGame'),
+};
 
 //dodanie tekstu
 output.innerHTML = 'START GAME!! Click the button!' + '<br><br>' + output.innerHTML;
@@ -61,35 +63,35 @@ function playerMove(playerChoice, computerChoice) {
     || ((playerChoice == 'scissors') && (computerChoice == 'paper'))
   ) {
     output.innerHTML = 'YOU WON! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
-    playersWin++;
-    result.innerHTML = playersWin+ ' - ' +computersWin;
+    paramms.playersWin++;
+    params.result.innerHTML = params.playersWin+ ' - ' +params.computersWin;
   } else {
     output.innerHTML = 'YOU LOST! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
-    computersWin++;
-    result.innerHTML = playersWin+ ' - ' +computersWin;
+    params.computersWin++;
+    params.result.innerHTML = params.playersWin+ ' - ' +params.computersWin;
   }
   gameOver();
 };
 
 function roundsLimit() {
-  rounds = window.prompt('How many rounds would you like to play?');
-  if (rounds > 0) {
-    numberLimit.innerHTML = 'Number of rounds: ' +rounds;
+  params.rounds = window.prompt('How many rounds would you like to play?');
+  if (params.rounds > 0) {
+    numberLimit.innerHTML = 'Number of rounds: ' +params.rounds;
   } else if(isNaN(rounds) || rounds <= 0) {
     numberLimit.innerHTML = 'Please write correct number of rounds';
   }
-  return rounds;
+  return params.rounds;
 };
 
 //funkcja pobiera informacje ze zmiennych computersWin i playersWin jeśli któreś osiągnie ilość wybranych rund wyświetla komunikat i blokuje przycisk  ????
 function gameOver() {
  
-  if (playersWin == rounds) {
-    gameResult.innerHTML = 'YOU WON THE GAME!';
+  if (params.playersWin == rounds) {
+    params.gameResult.innerHTML = 'YOU WON THE GAME!';
     disableButton(true);
     
-  } else if (computersWin == rounds) {
-    gameResult.innerHTML = 'GAME OVER';
+  } else if (params.computersWin == rounds) {
+    params.gameResult.innerHTML = 'GAME OVER';
     disableButton(true);
   }
 };
@@ -102,12 +104,12 @@ function disableButton(state) {                              //zablokowanie przy
  
 //uruchomienie przycisku newGame, zeruje wynik
 newGame.addEventListener('click', function() {
-  playersWin = 0;
-	computersWin = 0;
-  rounds = 0;
+  params.playersWin = 0;
+	params.computersWin = 0;
+  params.rounds = 0;
   roundsLimit();    //uruchomienie zapytanie o ilość rund
   disableButton(false); //odblokowanie przycisków
-  result.innerHTML = '';      //czyszczenie wyników
-  gameResult.innerHTML = '';
-  output.innerHTML = '';
+  params.result.innerHTML = '';      //czyszczenie wyników
+  params.gameResult.innerHTML = '';
+  params.output.innerHTML = '';
 });
