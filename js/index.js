@@ -1,25 +1,31 @@
 'use strict';
 
 var params = {
-  playersWin = 0,
-  computersWin = 0,
-  rounds = 0,
+  playersWin: 0,
+  computersWin: 0,
+  rounds: 0,
 //zapisanie w zmiennej odwołania do diva
-  output = document.getElementById('output'),   
-  result = document.getElementById('result'),
-  numberLimit = document.getElementById('numberLimit'),
-  gameResult = document.getElementById('gameResult'),
-  newGame = document.getElementById('newGame'),
+  output: document.getElementById('output'),   
+  result: document.getElementById('result'),
+  numberLimit: document.getElementById('numberLimit'),
+  gameResult: document.getElementById('gameResult'),
+  button1: document.getElementById('button_1'),
+  button2: document.getElementById('button_2'),
+  button3: document.getElementById('button_3'),
+  newGame: document.getElementById('newGame'),
 };
 
-//dodanie tekstu
-output.innerHTML = 'START GAME!! Click the button!' + '<br><br>' + output.innerHTML;
 
+
+//dodanie tekstu
+//params.output.innerHTML = 'START GAME!! Click the button!' + '<br><br>' + params.output.innerHTML;
+/*
 //zmienne do buttonów
 var button1 = document.getElementById('button_1');
 var button2 = document.getElementById('button_2');
 var button3 = document.getElementById('button_3');
-
+var newGame = document.getElementById('newGame');
+*/
 // Pętla i przypisana funkcja dla wszystkich buttons
 var allPlayerMove = document.querySelectorAll('.player-move'); 
 
@@ -56,17 +62,17 @@ function playerMove(playerChoice, computerChoice) {
   
   computerChoice = randomNumber();
   if (playerChoice == computerChoice) {
-    output.innerHTML = 'It is tie!';
+    params.output.innerHTML = 'It is tie!'+ params.output.innerHTML;
   } else if (
     ((playerChoice == 'paper') && (computerChoice == 'stone')) 
     || ((playerChoice == 'stone') && (computerChoice == 'scissors')) 
     || ((playerChoice == 'scissors') && (computerChoice == 'paper'))
   ) {
-    output.innerHTML = 'YOU WON! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
+    params.output.innerHTML = 'YOU WON! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
     paramms.playersWin++;
     params.result.innerHTML = params.playersWin+ ' - ' +params.computersWin;
   } else {
-    output.innerHTML = 'YOU LOST! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
+    params.output.innerHTML = 'YOU LOST! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
     params.computersWin++;
     params.result.innerHTML = params.playersWin+ ' - ' +params.computersWin;
   }
@@ -76,9 +82,9 @@ function playerMove(playerChoice, computerChoice) {
 function roundsLimit() {
   params.rounds = window.prompt('How many rounds would you like to play?');
   if (params.rounds > 0) {
-    numberLimit.innerHTML = 'Number of rounds: ' +params.rounds;
-  } else if(isNaN(rounds) || rounds <= 0) {
-    numberLimit.innerHTML = 'Please write correct number of rounds';
+    params.numberLimit.innerHTML = 'Number of rounds: ' +params.rounds;
+  } else if(isNaN(params.rounds) || params.rounds <= 0) {
+    params.numberLimit.innerHTML = 'Please write correct number of rounds';
   }
   return params.rounds;
 };
@@ -86,11 +92,11 @@ function roundsLimit() {
 //funkcja pobiera informacje ze zmiennych computersWin i playersWin jeśli któreś osiągnie ilość wybranych rund wyświetla komunikat i blokuje przycisk  ????
 function gameOver() {
  
-  if (params.playersWin == rounds) {
+  if (params.playersWin == params.rounds) {
     params.gameResult.innerHTML = 'YOU WON THE GAME!';
     disableButton(true);
     
-  } else if (params.computersWin == rounds) {
+  } else if (params.computersWin == params.rounds) {
     params.gameResult.innerHTML = 'GAME OVER';
     disableButton(true);
   }
@@ -103,7 +109,7 @@ function disableButton(state) {                              //zablokowanie przy
 };
  
 //uruchomienie przycisku newGame, zeruje wynik
-newGame.addEventListener('click', function() {
+params.newGame.addEventListener('click', function() {
   params.playersWin = 0;
 	params.computersWin = 0;
   params.rounds = 0;
