@@ -22,16 +22,19 @@ params.output.innerHTML = 'START GAME!! Click the button!' + '<br><br>' + params
 
 
 // Pętla przechodzącą przez wszystkie elementy z klasą player-move
-var allPlayerMove = document.querySelectorAll('.player-move'); 
 
-for (var i = 0; i < allPlayerMove.length; i++) {
-  var dataMove = allPlayerMove[i].getAttribute('data-move'); 
-  
-  allPlayerMove[i].addEventListener('click', function() { 
+  var allPlayerMove = document.querySelectorAll('.player-move'); 
+
+  for (var i = 0; i < allPlayerMove.length; i++) {
     
-    playerMove(dataMove);
-  });
-}
+  
+    allPlayerMove[i].addEventListener('click', function() { 
+      var dataMove = this.getAttribute('data-move'); 
+      playerMove(dataMove);
+    });
+  }
+
+
 /*
 button1.addEventListener('click', function() {
   playerMove('paper');
@@ -88,12 +91,15 @@ function roundsLimit() {
 function gameOver() {
  
   if (params.playersWin == params.rounds) {
-    params.gameResult.innerHTML = 'YOU WON THE GAME!';
+    showModal();
+    document.querySelector('.result-modal').innerHTML = 'YOU WON THE GAME! Press the new game button to start';
     disableButton(true);
     
-  } else if (params.computersWin == rounds) {
-    params.gameResult.innerHTML = 'GAME OVER';
+  } else if (params.computersWin == params.rounds) {
+    showModal();
+    document.querySelector('.result-modal').innerHTML = 'GAME OVER! Press the new game button to start';
     disableButton(true);
+    
   }
 };
 
@@ -113,4 +119,44 @@ newGame.addEventListener('click', function() {
   params.result.innerHTML = '';      //czyszczenie wyników
   params.gameResult.innerHTML = '';
   params.output.innerHTML = '';
+  
 });
+
+
+//Modal
+function showModal(){
+  var allModals = document.querySelectorAll('.modal');
+	  for (var i = 0; i < allModals.length; i++) {
+	    allModals[i].classList.remove('show');
+	  }
+  document.querySelector('#modal-overlay').classList.add('show');
+ 
+};
+
+
+// Dodajemy też funkcję zamykającą modal, oraz przywiązujemy ją do kliknięć na elemencie z klasą "close". 
+
+var hideModal = function(event){
+  event.preventDefault();
+  document.querySelector('#modal-overlay').classList.remove('show');
+};
+
+var closeButtons = document.querySelectorAll('.modal .close');
+
+for(var i = 0; i < closeButtons.length; i++){
+  closeButtons[i].addEventListener('click', hideModal);
+}
+
+// Dobrą praktyką jest również umożliwianie zamykania modala poprzez kliknięcie w overlay. 
+
+document.querySelector('#modal-overlay').addEventListener('click', hideModal);
+
+// Musimy jednak pamiętać, aby zablokować propagację kliknięć z samego modala - inaczej każde kliknięcie wewnątrz modala również zamykałoby go. 
+
+var modals = document.querySelectorAll('.modal');
+
+for(var i = 0; i < modals.length; i++){
+  modals[i].addEventListener('click', function(event){
+      event.stopPropagation();
+  });
+}
