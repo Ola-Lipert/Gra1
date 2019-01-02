@@ -1,4 +1,9 @@
 'use strict';
+//zmienne do buttonów
+var button1 = document.getElementById('button_1');
+var button2 = document.getElementById('button_2');
+var button3 = document.getElementById('button_3');
+var newGame = document.getElementById('newGame');
 
 var params = {
   playersWin: 0,
@@ -8,36 +13,25 @@ var params = {
   output: document.getElementById('output'),   
   result: document.getElementById('result'),
   numberLimit: document.getElementById('numberLimit'),
-  gameResult: document.getElementById('gameResult'),
-  button1: document.getElementById('button_1'),
-  button2: document.getElementById('button_2'),
-  button3: document.getElementById('button_3'),
-  newGame: document.getElementById('newGame'),
+  gameResult: document.getElementById('gameResult')
+
 };
 
-
-
 //dodanie tekstu
-//params.output.innerHTML = 'START GAME!! Click the button!' + '<br><br>' + params.output.innerHTML;
-/*
-//zmienne do buttonów
-var button1 = document.getElementById('button_1');
-var button2 = document.getElementById('button_2');
-var button3 = document.getElementById('button_3');
-var newGame = document.getElementById('newGame');
-*/
-// Pętla i przypisana funkcja dla wszystkich buttons
+params.output.innerHTML = 'START GAME!! Click the button!' + '<br><br>' + params.output.innerHTML;
+
+
+// Pętla przechodzącą przez wszystkie elementy z klasą player-move
 var allPlayerMove = document.querySelectorAll('.player-move'); 
 
 for (var i = 0; i < allPlayerMove.length; i++) {
   var dataMove = allPlayerMove[i].getAttribute('data-move'); 
-
+  
   allPlayerMove[i].addEventListener('click', function() { 
     
     playerMove(dataMove);
   });
 }
-
 /*
 button1.addEventListener('click', function() {
   playerMove('paper');
@@ -51,6 +45,7 @@ button3.addEventListener('click', function() {
   playerMove('scissors');
 });
 */
+
 //Funkcja która losuje 
 function randomNumber() {
   var computerChoices = ['paper', 'stone', 'scissors'];
@@ -62,14 +57,14 @@ function playerMove(playerChoice, computerChoice) {
   
   computerChoice = randomNumber();
   if (playerChoice == computerChoice) {
-    params.output.innerHTML = 'It is tie!'+ params.output.innerHTML;
+    params.output.innerHTML = 'It is tie!';
   } else if (
     ((playerChoice == 'paper') && (computerChoice == 'stone')) 
     || ((playerChoice == 'stone') && (computerChoice == 'scissors')) 
     || ((playerChoice == 'scissors') && (computerChoice == 'paper'))
   ) {
     params.output.innerHTML = 'YOU WON! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
-    paramms.playersWin++;
+    params.playersWin++;
     params.result.innerHTML = params.playersWin+ ' - ' +params.computersWin;
   } else {
     params.output.innerHTML = 'YOU LOST! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
@@ -83,7 +78,7 @@ function roundsLimit() {
   params.rounds = window.prompt('How many rounds would you like to play?');
   if (params.rounds > 0) {
     params.numberLimit.innerHTML = 'Number of rounds: ' +params.rounds;
-  } else if(isNaN(params.rounds) || params.rounds <= 0) {
+  } else if(isNaN(rounds) || rounds <= 0) {
     params.numberLimit.innerHTML = 'Please write correct number of rounds';
   }
   return params.rounds;
@@ -96,7 +91,7 @@ function gameOver() {
     params.gameResult.innerHTML = 'YOU WON THE GAME!';
     disableButton(true);
     
-  } else if (params.computersWin == params.rounds) {
+  } else if (params.computersWin == rounds) {
     params.gameResult.innerHTML = 'GAME OVER';
     disableButton(true);
   }
@@ -109,7 +104,7 @@ function disableButton(state) {                              //zablokowanie przy
 };
  
 //uruchomienie przycisku newGame, zeruje wynik
-params.newGame.addEventListener('click', function() {
+newGame.addEventListener('click', function() {
   params.playersWin = 0;
 	params.computersWin = 0;
   params.rounds = 0;
