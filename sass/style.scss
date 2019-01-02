@@ -1,22 +1,25 @@
 body {
 	text-align: center;
 	margin-top: 50px;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #d2dae2;
   
 }
 
 button {
   display: inline-block;
-	margin: 4px 2px;
+	margin: 40px 2px;
 	padding: 15px 30px;
-	min-width: 160px;
-	font-size: 16px;
+	min-width: 200px;
+	font-size: 20px;
 	font-weight: bold;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: 0.4s;
 	background-position: 100% 0;
 	background-size: 300%;
-	background-color: grey;
+	background-color: #485460;
+	color: #d2dae2;
   
   &:hover {
 	color: white;
@@ -25,9 +28,8 @@ button {
   }
 }
 
-game {
-  background-color: green;
-  margin-bottom: 50px;
+.game {
+  color: #ffa801;
   
 }
 
@@ -47,8 +49,9 @@ game {
 }
 
 .modal {
+	margin: 0 auto;
 	background: #fff;
-	width: 200px;
+	width: 500px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -64,15 +67,19 @@ game {
 	}
 	
 	header {
-		font-size: 20px;
+		font-size: 30px;
 		line-height: 30px;
 		min-height: 30px;
+		border: 1px solid #485460;
+		background-color:#485460;
+		color: #d2dae2;
 		font-weight: bold;
-		padding: 0 30px;
+		padding: 15px 30px;
 	}
 
 	.content {
-		min-height: 30px;
+		min-height: 300px;
 		padding: 5px 30px;
+		font-size: 20px;
 	}
 }
