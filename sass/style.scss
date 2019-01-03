@@ -75,11 +75,45 @@ button {
 		color: #d2dae2;
 		font-weight: bold;
 		padding: 15px 30px;
+
 	}
 
-	.content {
-		min-height: 300px;
-		padding: 5px 30px;
-		font-size: 20px;
+	.result-modal {
+		text-align: center;
+		font-weight: bold;
+
 	}
+
+	.result-table {
+		min-height: 30px;
+		padding: 5px 30px;
+
+	}
+	
+	table {
+		border: none;
+		width: 90%;
+		margin: 0 auto;
+		border-collapse: separate;
+
+	}
+	
+	th {
+	   width: 25%;
+	   background-color: #ffa801;
+	   font-weight: bold;
+	   font-size: 16px;
+	   text-align: center;
+
+	}
+
+	td {
+	   width: 25%;
+	   background-color: #ffa801;
+	   font-size: 16px;
+	   text-align: center;
+
+	}
+	
+	
 }

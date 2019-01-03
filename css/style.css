@@ -16,4 +16,12 @@ button:hover { color: white; background-position: 0 100%; }
 
 .modal header { font-size: 30px; line-height: 30px; min-height: 30px; border: 1px solid #485460; background-color: #485460; color: #d2dae2; font-weight: bold; padding: 15px 30px; }
 
-.modal .content { min-height: 300px; padding: 5px 30px; font-size: 20px; }
+.modal .result-modal { text-align: center; font-weight: bold; }
+
+.modal .result-table { min-height: 30px; padding: 5px 30px; }
+
+.modal table { border: none; width: 90%; margin: 0 auto; border-collapse: separate; }
+
+.modal th { width: 25%; background-color: #ffa801; font-weight: bold; font-size: 16px; text-align: center; }
+
+.modal td { width: 25%; background-color: #ffa801; font-size: 16px; text-align: center; }
