@@ -5,6 +5,8 @@ var button2 = document.getElementById('button_2');
 var button3 = document.getElementById('button_3');
 var newGame = document.getElementById('newGame');
 
+
+
 var params = {
   playersWin: 0,
   computersWin: 0,
@@ -13,7 +15,8 @@ var params = {
   output: document.getElementById('output'),   
   result: document.getElementById('result'),
   numberLimit: document.getElementById('numberLimit'),
-  gameResult: document.getElementById('gameResult')
+  gameResult: document.getElementById('gameResult'),
+  progress: []
 
 };
 
@@ -36,6 +39,16 @@ params.output.innerHTML = 'START GAME!! Click the button!' + '<br><br>' + params
 
 
 /*
+var allPlayerMove = document.querySelectorAll('.player-move'); // Ustalam zmienną dla wszystkich elementów, które mają klasę "player-move"
+
+for (var i = 0; i < allPlayerMove.length; i++) {
+  var dataMove = allPlayerMove[i].getAttribute('data-move'); // Tworzę pętlę, która wyciąga z przeszukanych elementów atrybut "data-move"
+  
+  allPlayerMove[i].addEventListener('click', function() { // Wywołuję proces nasłuchiwania i wykonuję funkcję z argumentem "dataMove"
+    
+    playerMove(dataMove);
+  });
+}
 button1.addEventListener('click', function() {
   playerMove('paper');
 });
@@ -57,10 +70,13 @@ function randomNumber() {
 };
 
 function playerMove(playerChoice, computerChoice) {
-  
+
+  var winner;
+
   computerChoice = randomNumber();
   if (playerChoice == computerChoice) {
     params.output.innerHTML = 'It is tie!';
+    winner = 'tie';
   } else if (
     ((playerChoice == 'paper') && (computerChoice == 'stone')) 
     || ((playerChoice == 'stone') && (computerChoice == 'scissors')) 
@@ -69,11 +85,20 @@ function playerMove(playerChoice, computerChoice) {
     params.output.innerHTML = 'YOU WON! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
     params.playersWin++;
     params.result.innerHTML = params.playersWin+ ' - ' +params.computersWin;
+    winner = 'player';
   } else {
     params.output.innerHTML = 'YOU LOST! You played: ' + playerChoice + ' - computer played: ' + computerChoice;
     params.computersWin++;
     params.result.innerHTML = params.playersWin+ ' - ' +params.computersWin;
+    winner = 'computer';
   }
+
+  params.progress.push({
+    player: playerChoice,
+    computer: computerChoice,
+    winner: winner
+  });
+
   gameOver();
 };
 
@@ -101,6 +126,19 @@ function gameOver() {
     disableButton(true);
     
   }
+
+  var html = '<table>';
+
+  for (var i = 0; i < params.progress.length; i++) {
+
+    html += '<tr><td>' + (i+1) + '</td><td>' + params.progress[i].player + '</td><td>' + params.progress[i].computer + '</td><td>' + params.progress[i].winner + '</td></tr>';
+
+  }
+
+  html += '</table>';
+
+  document.querySelector('.result-table').innerHTML = html;
+
 };
 
 function disableButton(state) {                              //zablokowanie przycisków
@@ -121,15 +159,31 @@ newGame.addEventListener('click', function() {
   params.output.innerHTML = '';
   
 });
+/*
+function tableGame(){
+  var html = '<table>';
 
+  for (var i = 0; i < params.progress.length; i++) {
 
+    html += '<tr><td>' + (i+1) + '</td><td>' + params.progress[i].player + '</td><td>' + params.progress[i].computer + '</td><td>' + params.progress[i].winner + '</td></tr>';
+
+  }
+
+  html += '</table>';
+
+  document.querySelector('.result-modal').innerHTML = html;
+
+}
+*/
 //Modal
 function showModal(){
   var allModals = document.querySelectorAll('.modal');
 	  for (var i = 0; i < allModals.length; i++) {
-	    allModals[i].classList.remove('show');
+      allModals[i].classList.remove('show');
+    
 	  }
   document.querySelector('#modal-overlay').classList.add('show');
+    
  
 };
 
@@ -139,6 +193,7 @@ function showModal(){
 var hideModal = function(event){
   event.preventDefault();
   document.querySelector('#modal-overlay').classList.remove('show');
+  
 };
 
 var closeButtons = document.querySelectorAll('.modal .close');
