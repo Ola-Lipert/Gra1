@@ -1,8 +1,16 @@
+$background: #d2dae2;
+$orange: #ffa801;
+$grey: #485460;
+
+
+
+
+
 body {
 	text-align: center;
 	margin-top: 50px;
 	font-family: 'Open Sans', sans-serif;
-	background-color: #d2dae2;
+	background-color: $background;
   
 }
 
@@ -18,8 +26,8 @@ button {
 	transition: 0.4s;
 	background-position: 100% 0;
 	background-size: 300%;
-	background-color: #485460;
-	color: #d2dae2;
+	background-color: $grey;
+	color: $background;
   
   &:hover {
 	color: white;
@@ -29,7 +37,7 @@ button {
 }
 
 .game {
-  color: #ffa801;
+  color: $orange;
   
 }
 
@@ -50,7 +58,7 @@ button {
 
 .modal {
 	margin: 0 auto;
-	background: #fff;
+	background: $background;
 	width: 500px;
 	position: absolute;
 	top: 50%;
@@ -62,17 +70,18 @@ button {
 		right: 0;
 		top: 0;
 		padding: 5px;
-		color: #000;
+		color: $grey;
 		text-decoration: none;
+
 	}
 	
 	header {
 		font-size: 30px;
 		line-height: 30px;
 		min-height: 30px;
-		border: 1px solid #485460;
-		background-color:#485460;
-		color: #d2dae2;
+		border: 1px solid $grey;
+		background-color:$grey;
+		color: $background;
 		font-weight: bold;
 		padding: 15px 30px;
 
@@ -100,7 +109,7 @@ button {
 	
 	th {
 	   width: 25%;
-	   background-color: #ffa801;
+	   background-color: $orange;
 	   font-weight: bold;
 	   font-size: 16px;
 	   text-align: center;
@@ -109,7 +118,7 @@ button {
 
 	td {
 	   width: 25%;
-	   background-color: #ffa801;
+	   background-color: $orange;
 	   font-size: 16px;
 	   text-align: center;
 
